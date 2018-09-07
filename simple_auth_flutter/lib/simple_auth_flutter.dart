@@ -8,7 +8,7 @@ import 'package:simple_auth_flutter/basic_login_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as storage;
 
 
-class SimpleAuthFlutter implements simpleAuth.AuthStorage {
+class SimpleAuthFlutter2 implements simpleAuth.AuthStorage {
   static const MethodChannel _channel =
       const MethodChannel('simple_auth_flutter/showAuthenticator');
   static const EventChannel _eventChannel =
@@ -111,7 +111,7 @@ class UrlChange {
   UrlChange(this.identifier, this.url, this.foreComplete, this.description);
 }
 
-class SimpleAuthFlutterPersistant implements simpleAuth.AuthStorage {
+class SimpleAuthFlutter implements simpleAuth.AuthStorage {
   static storage.FlutterSecureStorage _storage = new storage.FlutterSecureStorage();
   static const MethodChannel _channel =
       const MethodChannel('simple_auth_flutter/showAuthenticator');
@@ -151,10 +151,10 @@ class SimpleAuthFlutterPersistant implements simpleAuth.AuthStorage {
         builder: (BuildContext context) => new BasicLoginPage(authenticator));
   }
 
-  static SimpleAuthFlutterPersistant _shared = new SimpleAuthFlutterPersistant();
+  static SimpleAuthFlutter _shared = new SimpleAuthFlutter();
   static BuildContext context;
   static void init(BuildContext context) {
-    SimpleAuthFlutterPersistant.context = context;
+    SimpleAuthFlutter.context = context;
     simpleAuth.AuthStorage.shared = _shared;
     simpleAuth.OAuthApi.sharedShowAuthenticator = showAuthenticator;
     simpleAuth.BasicAuthApi.sharedShowAuthenticator = showBasicAuthenticator;
